@@ -1,6 +1,6 @@
 Ovarian cancer history,Family history  lung cancer,Family history  esophagus cancer,Family history  stomach cancer,Family history colorectal cancer,Family history  liver cancer,Family history  pancreatic cancer,"Family history  gallbladder, bile duct cancer",Family history  prostate cancer,Family history  breast cancer,Family history  cervical cancer,Family history  uterine endometrial cancer,Family history  ovarian cancer,Family history  malignant lymphoma,Family history  pharynx  laryngeal cancer,Family history  thyroid cancer,Family history  bone tumor,Family history  brain tumor,Family history  kidney cancer,Family history  testicular cancer,Family history  skin cancer,Family history  bladder cancer,Family history  leukemia,Age at onset,Bilateral breast cancer,Tissue type (3 groups),TMN classification  T,TNM classification  N,TNM classification  M,ER,PgR,HER2,CarrierGene
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,32,No,5,2,0,0,Positive,,bob,NonCarrier
-0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,59,No,ÿ,1,0,0,Positive,Negative,NA,NonCarrier
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,32,No,ÿ8,2,0,0,Positive,,bob,NonCarrier
+0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,59,No,0,1,0,0,Positive,Negative,NA,NonCarrier
 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,52,No,NA,2,1,NA,Positive,Negative,2+,BRCA1
 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,No,NA,2,NA,0,Positive,Positive,0,NonCarrier
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,73,No,Invasive carcinoma,3,0,0,Positive,Positive,0,NonCarrier

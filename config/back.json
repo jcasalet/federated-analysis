@@ -1,5 +1,5 @@
 {
-	"fileName": "/Users/jcasaletto/Desktop/GRAD_SCHOOL/UCSC/BIOBANK/MyShuffleData.csv",
+	"fileName": "/data/MyShuffleData.csv",
 	"fileHeader": "True",
 	"fieldDelimiter": ",",
 	"fieldFilter": [
