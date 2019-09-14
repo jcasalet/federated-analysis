@@ -1,8 +1,10 @@
 #!/bin/bash
 
-APP_PATH=/Users/jcasaletto/PycharmProjects/BIOBANK/federated_data_analysis/app
-CONF_PATH=/Users/jcasaletto/PycharmProjects/BIOBANK/federated_data_analysis/config
-DATA_PATH=/Users/jcasaletto/PycharmProjects/BIOBANK/federated_data_analysis/data
+FDA_PATH=/Users/jcasaletto/PycharmProjects/BIOBANK/federated_data_analysis
+
+APP_PATH=${FDA_PATH}/app
+CONF_PATH=${FDA_PATH}/config
+DATA_PATH=${FDA_PATH}/data
 
 DOCKER_IMAGE_NAME=my_fda_image
 
