@@ -12,10 +12,10 @@ The default data analysis outputs the following information:
 3. data file field delimiter
 4. total records read from data file
 5. for each field of interest
-  a. name of field
-  b. type of field (numerical, categorical, or free-form)
-  c. total counts for each value
-  d. for numerical data, the min, max, mean, and median values
+    a. name of field
+    b. type of field (numerical, categorical, or free-form)
+    c. total counts for each value
+    d. for numerical data, the min, max, mean, and median values
 6. bad values (those that don't conform to the type)
 7. missing values (fields that are not populated)
 
