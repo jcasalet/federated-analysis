@@ -237,7 +237,7 @@ class FederatedDataAnalyzer:
 
 def main():
 
-    # get file name of filter file from command line
+    # get file name of config file from command line
     configFileName = sys.argv[1]
 
     # instantiate analyzer object
@@ -246,7 +246,7 @@ def main():
     # run analyzer
     myFederatedDataAnalyzer.run()
 
-    # run any custom code
+    # run any custom code (TODO if this file doesn't exist or the method not implemented, then what?
     customDataAnalyzer.run(myFederatedDataAnalyzer)
 
 if __name__ == "__main__":
