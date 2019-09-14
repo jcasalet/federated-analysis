@@ -1,6 +1,6 @@
 # federated_data_analysis
 
-While HIPAA requires that medical information be kept private, scientists need medical information in order to conduct their research.  So instead of sharing data, hospitals and clinics can run software on that data and share the summarized, aggregated results with the interested scientists.  In this way, the law is respected, and science can move forward on important research.
+While HIPAA requires that medical information be kept private, scientists need medical information in order to conduct their research.  So instead of sharing data, hospitals and clinics can run software on that data and share the summarized, aggregated results with the interested scientists.  In this way, people's privacy is protected, and science can move forward on important research.
 
 This software repository contains scripts that achieve the above goal.  Specifically, this software allows users to run a Docker container which has the necessary code to perform the statistical analysis and validity checking.  There's a configuration file that the cooperating owner of the data must fill out in conjunction with the scientist to define the fields of interest in the data set.  
 
