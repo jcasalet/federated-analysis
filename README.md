@@ -7,26 +7,26 @@ This software repository contains scripts that achieve the above goal.  Specific
 There are two Python modules in this repository: one which performs default analysis (dataAnalyzer.py) and one that performs custom analysis (customDataAnalyzer.py).  
 
 The default data analysis outputs the following information:
-_1. data file name 
-_2. data file header present?
-_3. data file field delimiter
-_4. total records read from data file
-_5. for each field of interest
-__a. name of field
-__b. type of field (numerical, categorical, or free-form)
-__c. total counts for each value
-__d. for numerical data, the min, max, mean, and median values
-_6. bad values (those that don't conform to the type)
-_7. missing values (fields that are not populated)
+1. data file name 
+2. data file header present?
+3. data file field delimiter
+4. total records read from data file
+5. for each field of interest
+  a. name of field
+  b. type of field (numerical, categorical, or free-form)
+  c. total counts for each value
+  d. for numerical data, the min, max, mean, and median values
+6. bad values (those that don't conform to the type)
+7. missing values (fields that are not populated)
 
 Note that the default data analysis is generic -- it's completely devoid of any application or context.  If the scientist wishes to perform specific analyses on the data, then they must implement the custom data analyzer.  The custom data analyzer is provided an object that encapsulates all the default data analysis.  The custom code can then perform application-specific analyses on the data. 
 
 
 In order to use this solution, perform the following steps.
 
-_1. Edit the config/conf.json file to reflect the metadata regarding the data file (file name, header line, field delimiter) as well as the correct fields of interest.
+1. Edit the config/conf.json file to reflect the metadata regarding the data file (file name, header line, field delimiter) as well as the correct fields of interest.
 
-_2. Edit the runMe.sh script to point to the correct location of the local repository.
+2. Edit the runMe.sh script to point to the correct location of the local repository.
 
-_3. Run the runMe.sh script. 
+3. Run the runMe.sh script. 
 
