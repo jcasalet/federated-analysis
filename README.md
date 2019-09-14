@@ -4,7 +4,7 @@ While HIPAA requires that medical information be kept private, scientists need m
 
 This software repository contains scripts that achieve the above goal.  Specifically, this software allows users to run a Docker container which has the necessary code to perform the statistical analysis and validity checking.  There's a configuration file that the cooperating owner of the data must fill out in conjunction with the scientist to define the fields of interest in the data set.  
 
-There are Python modules in this repository: one which performs default analysis (dataAnalyzer.py) and one that performs custom analysis (customDataAnalyzer.py).  
+There are two Python modules in this repository: one which performs default analysis (dataAnalyzer.py) and one that performs custom analysis (customDataAnalyzer.py).  
 
 The default data analysis outputs the following information:
 1. data file name 
@@ -12,10 +12,10 @@ The default data analysis outputs the following information:
 3. data file field delimiter
 4. total records read from data file
 5. for each field of interest
-	a. name of field
-	b. type of field (numerical, categorical, or free-form)
-	c. total counts for each value
-	d. for numerical data, the min, max, mean, and median values
+a. name of field
+b. type of field (numerical, categorical, or free-form)
+c. total counts for each value
+d. for numerical data, the min, max, mean, and median values
 6. bad values (those that don't conform to the type)
 7. missing values (fields that are not populated)
 
