@@ -68,6 +68,10 @@ class FederatedDataAnalyzer:
         for field in self.fieldFilter:
             self.fieldFilters[self.fieldFilter[field]['fieldName']] = self.fieldFilter[field]
         self.valueFrequency = dict()  # {fieldName: CategoryCount}
+        # instantiate dict for tracking rows with bad field values
+        self.badValues = dict() # {rowIndex: [list of tuples (fieldName:fieldValue)]}
+        # instantiate dict for tracking rows with empty fields
+        self.missingValues = dict() # {rowIndex: [list of missing values in row]}
 
 
     def readConfigFile(self):
@@ -172,14 +176,12 @@ class FederatedDataAnalyzer:
         return min(allVals), max(allVals), statistics.mean(allVals), statistics.median(allVals)
 
 
-    def printResults(self, badValues, missingValues):
+    def printResults(self):
         """
         Purpose:
             Prints the values to sys.stdout
         Input:
-            valueFrequency:     dictionary of {value: count}
-            badValues:          dictionary of {index: [(field, value), (column, value), ...]} of non-conforming data values
-            missingValues:      dictionary of {index: [field, column, ...]} of empty fields
+            self
         Returns:
             void
         """
@@ -196,36 +198,33 @@ class FederatedDataAnalyzer:
                 minVal, maxVal, meanVal, medianVal = self.getStatistics(self.valueFrequency, myField)
                 print('min = ' + str(minVal) + ', max = ' + str(maxVal) + ', mean = ' + str(meanVal) + ' median = ' + str(medianVal))
             print("============================================")
-        print('bad values: ' + str(badValues))
+        print('bad values: ' + str(self.badValues))
         print("============================================")
-        print('missing values: ' + str(missingValues))
+        print('missing values: ' + str(self.missingValues))
         print("============================================")
 
 
     def run(self):
-
-        # instantiate dict for counting frequency of values for categorical data
-
-
-        # instantiate dict for tracking rows with bad field values
-        badValues = dict() # {rowIndex: [list of tuples (fieldName:fieldValue)]}
-
-        # instantiate dict for tracking rows with empty fields
-        missingValues = dict() # {rowIndex: [list of missing values in row]}
-
-        # big loop iterating through all field values, row by row
+        """
+        Purpose:
+            This is the big loop that iterates through all rows and performs analysis on all fields of interest
+        Input:
+            self
+        Returns:
+            void
+        """
         for myIndex, myRow in self.dataFile.iterrows():
             for myField in self.dataFile.columns:
                 # check if field has a value
                 if myRow[myField] == '':
-                    if myIndex not in missingValues.keys():
-                        missingValues[myIndex] = list()
-                    missingValues[myIndex].append(myField)
+                    if myIndex not in self.missingValues.keys():
+                        self.missingValues[myIndex] = list()
+                    self.missingValues[myIndex].append(myField)
                 # validate field value
                 elif(not self.validateField(myRow[myField], self.fieldFilters[myField])):
-                    if myIndex not in badValues.keys():
-                        badValues[myIndex] = list()
-                    badValues[myIndex].append((myField, myRow[myField]))
+                    if myIndex not in self.badValues.keys():
+                        self.badValues[myIndex] = list()
+                    self.badValues[myIndex].append((myField, myRow[myField]))
                 else:
                     # add +1 to value counter
                     if myField not in self.valueFrequency.keys():
@@ -233,7 +232,7 @@ class FederatedDataAnalyzer:
                     else:
                         self.valueFrequency[myField].incrementCounter(myRow[myField])
         # print data summary to stdout
-        self.printResults(badValues, missingValues)
+        self.printResults()
 
 def main():
 
@@ -246,7 +245,7 @@ def main():
     # run analyzer
     myFederatedDataAnalyzer.run()
 
-    # run any custom code (TODO if this file doesn't exist or the method not implemented, then what?
+    # run any custom code 
     customDataAnalyzer.run(myFederatedDataAnalyzer)
 
 if __name__ == "__main__":
