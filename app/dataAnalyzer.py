@@ -58,6 +58,9 @@ class FederatedDataAnalyzer:
         configFile:         object of type ConfigFile containing configuration
         dataFile:           object of type pandas.DataFrame containing data
         fieldFilters:       dictionary object mapping each field to their filters {field: filter}
+        valueFrequency:     dictionary object mapping field name to value count {fieldName: FieldCount}
+        badValues:          dictionary object tracking bad values {rowIndex: [list of tuples (fieldName:fieldValue)]}
+        missingValues:      dictionary object tracking missing values {rowIndex: [list of missing values in row]}
 
     """
     def __init__(self, configFileName):
@@ -67,11 +70,9 @@ class FederatedDataAnalyzer:
         self.fieldFilters = dict()
         for field in self.fieldFilter:
             self.fieldFilters[self.fieldFilter[field]['fieldName']] = self.fieldFilter[field]
-        self.valueFrequency = dict()  # {fieldName: CategoryCount}
-        # instantiate dict for tracking rows with bad field values
-        self.badValues = dict() # {rowIndex: [list of tuples (fieldName:fieldValue)]}
-        # instantiate dict for tracking rows with empty fields
-        self.missingValues = dict() # {rowIndex: [list of missing values in row]}
+        self.valueFrequency = dict()
+        self.badValues = dict() #
+        self.missingValues = dict()
 
 
     def readConfigFile(self):
@@ -245,7 +246,7 @@ def main():
     # run analyzer
     myFederatedDataAnalyzer.run()
 
-    # run any custom code 
+    # run any custom code
     customDataAnalyzer.run(myFederatedDataAnalyzer)
 
 if __name__ == "__main__":
