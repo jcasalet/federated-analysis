@@ -30,3 +30,12 @@ In order to use this solution, perform the following steps.
 
 3. Run the runMe.sh script. 
 
+
+
+To run the unit tests, perform the following steps:
+
+1. change directory to the top-level directory of the repository
+
+2. run the following command:
+
+python -m unittest tests.test_dataAnalyzer
