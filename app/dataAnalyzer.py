@@ -45,8 +45,9 @@ class FieldCounter:
 
     def print(self):
         # print count of each value in field
-        for field in sorted(self.fieldCount.keys()):
-            print(str(field) + ': ' + str(self.fieldCount[field]))
+        print(json.dumps(self.__dict__))
+        '''for field in sorted(self.fieldCount.keys()):
+            print(str(field) + ': ' + str(self.fieldCount[field]))'''
 
 class FederatedDataAnalyzer:
     """
@@ -186,10 +187,12 @@ class FederatedDataAnalyzer:
         Returns:
             void
         """
-        # TODO expose output format requirements in filter file (and rename "filter file" to "config file"
-        print('data file name: ' + self.configFile.fileName)
+        # TODO expose output format requirements in conf file
+        print('config file info: ' + str(json.dumps(self.configFile.__dict__)))
+        '''print('data file name: ' + self.configFile.fileName)
         print('data file header present?: ' + self.configFile.fileHeader)
-        print('data file field delimiter: ' + self.configFile.fieldDelimiter)
+        print('data file field delimiter: ' + self.configFile.fieldDelimiter)'''
+        print("============================================")
         print('total records read from data file: ' + str(len(self.dataFile)))
         print("============================================")
         for myField in self.valueFrequency.keys():

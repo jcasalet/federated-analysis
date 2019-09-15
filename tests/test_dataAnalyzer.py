@@ -13,14 +13,13 @@ class TestDataAnalyzer(unittest.TestCase):
         configFileName = 'tests/test_conf.json'
         myFederatedDataAnalyzer = FederatedDataAnalyzer(configFileName)
         with self.subTest():
-            assert myFederatedDataAnalyzer.configFile.fileName == 'tests/test_data.csv'
+            self.assertEqual(myFederatedDataAnalyzer.configFile.fileName, 'tests/test_data.csv', 'wrong data file')
         with self.subTest():
-            assert myFederatedDataAnalyzer.configFile.fileHeader == 'True'
+            self.assertEqual(myFederatedDataAnalyzer.configFile.fileHeader, 'True', 'wrong file header')
         with self.subTest():
-            assert myFederatedDataAnalyzer.configFile.fieldDelimiter == ','
+            self.assertEqual(myFederatedDataAnalyzer.configFile.fieldDelimiter, ',', 'wrong field delimiter')
         with self.subTest():
-            assert myFederatedDataAnalyzer.configFile.fieldFilter == fieldFilter
-
+            self.assertEqual(myFederatedDataAnalyzer.configFile.fieldFilter, fieldFilter, 'wrong field filter')
 
 '''
     def test_readDataFile():
