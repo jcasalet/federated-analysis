@@ -1,0 +1,11 @@
+{
+	"fileName": "tests/test_data.csv",
+	"fileHeader": "True",
+	"fieldDelimiter": ",",
+	"fieldFilter": [
+		{"fieldName": "ER", "fieldType": "categorical", "fieldValues": ["Positive", "Negative", "NA"]},
+		{"fieldName": "PgR", "fieldType": "categorical", "fieldValues": ["Positive", "Negative", "NA"]},
+		{"fieldName": "HER2", "fieldType": "categorical", "fieldValues": ["0", "1+", "2+", "3+", "NA"]},
+		{"fieldName": "Age at onset", "fieldType": "numerical", "fieldValues": []},
+		{"fieldName": "Tissue type (3 groups)", "fieldType": "free-form", "fieldValues": ["ascii", "utf-8"]}]
+}

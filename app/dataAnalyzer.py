@@ -3,7 +3,7 @@ import statistics
 import json
 import pandas
 import numpy
-import customDataAnalyzer
+import app.customDataAnalyzer
 
 class ConfigFile:
     """
@@ -247,7 +247,7 @@ def main():
     myFederatedDataAnalyzer.run()
 
     # run any custom code
-    customDataAnalyzer.run(myFederatedDataAnalyzer)
+    app.customDataAnalyzer.run(myFederatedDataAnalyzer)
 
 if __name__ == "__main__":
     main()
