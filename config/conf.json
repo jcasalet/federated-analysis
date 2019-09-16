@@ -1,5 +1,5 @@
 {
-	"outputFile": "",
+	"outputFile": "/data/output.txt",
 	"fileName": "/data/MyShuffleData.csv",
 	"fileHeader": "True",
 	"fieldDelimiter": ",",
