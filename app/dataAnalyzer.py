@@ -4,6 +4,7 @@ import json
 import pandas
 import numpy
 import app.customDataAnalyzer
+import os
 
 class ConfigFile:
     """
@@ -15,13 +16,15 @@ class ConfigFile:
         fileHeader:     boolean header present in file
         fieldDelimiter: char that separates field in data file
         fieldFilter:    json object encapsulating field definitions
+        outputFile:     name of file to write results
     """
 
-    def __init__(self, fileName, fileHeader, fieldDelimiter, fieldFilter):
+    def __init__(self, fileName, fileHeader, fieldDelimiter, fieldFilter, outputFile):
         self.fileName = fileName
         self.fileHeader = fileHeader
         self.fieldDelimiter = fieldDelimiter
         self.fieldFilter = fieldFilter
+        self.outputFile = outputFile
 
 class FieldCounter:
     """
@@ -45,9 +48,9 @@ class FieldCounter:
 
     def print(self):
         # print count of each value in field
-        print(json.dumps(self.__dict__))
+        print(json.dumps(self.__dict__, sort_keys=True))
         '''for field in sorted(self.fieldCount.keys()):
-            print(str(field) + ': ' + str(self.fieldCount[field]))'''
+            print(str(field) + ': ' + str(self.fieldCount[field]), file=file_object)'''
 
 class FederatedDataAnalyzer:
     """
@@ -88,7 +91,9 @@ class FederatedDataAnalyzer:
         with open(self.configFileName, 'r') as myFile:
             jsonData = myFile.read()
         data = json.loads(jsonData)
-        configFile = ConfigFile(data['fileName'], data['fileHeader'], data['fieldDelimiter'], data['fieldFilter'])
+
+        configFile = ConfigFile(data['fileName'], data['fileHeader'], data['fieldDelimiter'], data['fieldFilter'],
+                                data['outputFile'])
         fieldFilter = dict()
         for f in configFile.fieldFilter:
             fieldFilter[f['fieldName']] = f
@@ -122,10 +127,10 @@ class FederatedDataAnalyzer:
         Purpose:
             function to validate the value of a field using the user-provided filter criteria
         Input:
-            valueFrequency:     dictionary of {value: count}
-            myCol:              string name of column
+            fieldValue:     int, float, string, ... literal
+            fieldFilter:    filter for this field , parsed from conf file
         Returns:
-            min, max, mean, median of values in myCol field
+            True (valid) or False (not valid)
         """
         # if field is categorical and there are categories to match, test categories.
         if fieldFilter['fieldType'] == 'categorical':
@@ -187,25 +192,35 @@ class FederatedDataAnalyzer:
         Returns:
             void
         """
-        # TODO expose output format requirements in conf file
-        print('config file info: ' + str(json.dumps(self.configFile.__dict__)))
-        '''print('data file name: ' + self.configFile.fileName)
-        print('data file header present?: ' + self.configFile.fileHeader)
-        print('data file field delimiter: ' + self.configFile.fieldDelimiter)'''
-        print("============================================")
-        print('total records read from data file: ' + str(len(self.dataFile)))
-        print("============================================")
+        if self.configFile.outputFile != '' and os.path.exists(self.configFile.outputFile):
+            print('output file ' + self.configFile.outputFile + ' exists!', file=sys.stderr)
+            sys.exit(1)
+        else:
+            if self.configFile.outputFile == "":
+                fileObject = sys.stdout
+            else:
+                fileObject = open(self.configFile.outputFile, mode='a')
+
+        print("============================================", file=fileObject)
+        print('config file info: ' + str(json.dumps(self.configFile.__dict__)), file=fileObject)
+        print('data file name: ' + self.configFile.fileName, file=fileObject)
+        print('data file header present?: ' + self.configFile.fileHeader, file=fileObject)
+        print('data file field delimiter: ' + self.configFile.fieldDelimiter, file=fileObject)
+        print("============================================", file=fileObject)
+        print('total records read from data file: ' + str(len(self.dataFile)), file=fileObject)
+        print("============================================", file=fileObject)
         for myField in self.valueFrequency.keys():
-            print('column: ' + myField + ' / type: ' + self.fieldFilter[myField]['fieldType'])
-            self.valueFrequency[myField].print()
+            print('column: ' + myField + ' / type: ' + self.fieldFilter[myField]['fieldType'], file=fileObject)
+            print(json.dumps(self.valueFrequency[myField].__dict__, sort_keys=True), file=fileObject)
             if self.fieldFilter[myField]['fieldType'] == 'numerical':
                 minVal, maxVal, meanVal, medianVal = self.getStatistics(self.valueFrequency, myField)
-                print('min = ' + str(minVal) + ', max = ' + str(maxVal) + ', mean = ' + str(meanVal) + ' median = ' + str(medianVal))
-            print("============================================")
-        print('bad values: ' + str(self.badValues))
-        print("============================================")
-        print('missing values: ' + str(self.missingValues))
-        print("============================================")
+                print('min = ' + str(minVal) + ', max = ' + str(maxVal) + ', mean = ' + str(meanVal) + ' median = ' +
+                      str(medianVal), file=fileObject)
+            print("============================================", file=fileObject)
+        print('bad values: ' + str(self.badValues), file=fileObject)
+        print("============================================", file=fileObject)
+        print('missing values: ' + str(self.missingValues), file=fileObject)
+        print("============================================", file=fileObject)
 
 
     def run(self):

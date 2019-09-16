@@ -1,6 +1,6 @@
 {
-	"outputFile": "",
-	"fileName": "tests/test_data.csv",
+	"outputFile": "", 
+	"fileName": "//Users/jcasaletto/PycharmProjects/BIOBANK/federated_data_analysis/data/MyShuffleData.csv",
 	"fileHeader": "True",
 	"fieldDelimiter": ",",
 	"fieldFilter": [
@@ -8,5 +8,5 @@
 		{"fieldName": "PgR", "fieldType": "categorical", "fieldValues": ["Positive", "Negative", "NA"]},
 		{"fieldName": "HER2", "fieldType": "categorical", "fieldValues": ["0", "1+", "2+", "3+", "NA"]},
 		{"fieldName": "Age at onset", "fieldType": "numerical", "fieldValues": []},
-		{"fieldName": "Tissue type (3 groups)", "fieldType": "free-form", "fieldValues": ["ascii"]}]
+		{"fieldName": "Tissue type (3 groups)", "fieldType": "free-form", "fieldValues": ["ascii", "utf-8"]}]
 }
