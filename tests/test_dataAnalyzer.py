@@ -58,5 +58,5 @@ class TestDataAnalyzer(unittest.TestCase):
     def test_run(self):
         configFileName = 'tests/test_conf.json'
         myFDA = FederatedDataAnalyzer(configFileName)
-        myFDA.run()
+        self.assertTrue(myFDA.run(), msg='integration test failure')
 

@@ -1,6 +1,6 @@
 {
 	"outputFile": "", 
-	"fileName": "//Users/jcasaletto/PycharmProjects/BIOBANK/federated_data_analysis/data/MyShuffleData.csv",
+	"fileName": "/Users/jcasaletto/PycharmProjects/BIOBANK/federated-analysis/data/MyShuffleData.csv",
 	"fileHeader": "True",
 	"fieldDelimiter": ",",
 	"fieldFilter": [

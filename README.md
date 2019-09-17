@@ -1,4 +1,4 @@
-# federated_data_analysis
+# federated-analysis
 
 While HIPAA requires that medical information be kept private, scientists need medical information in order to conduct their research.  So instead of sharing data, hospitals and clinics can run software on that data and share the summarized, aggregated results with the interested scientists.  In this way, people's privacy is protected, and science can move forward on important research.
 

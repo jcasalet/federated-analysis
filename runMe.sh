@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FDA_PATH=/Users/jcasaletto/PycharmProjects/BIOBANK/federated_data_analysis
+FDA_PATH=/Users/jcasaletto/PycharmProjects/BIOBANK/federated-analysis
 
 APP_PATH=${FDA_PATH}/app
 CONF_PATH=${FDA_PATH}/config

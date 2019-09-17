@@ -232,26 +232,31 @@ class FederatedDataAnalyzer:
         Returns:
             void
         """
-        for myIndex, myRow in self.dataFile.iterrows():
-            for myField in self.dataFile.columns:
-                # check if field has a value
-                if myRow[myField] == '':
-                    if myIndex not in self.missingValues.keys():
-                        self.missingValues[myIndex] = list()
-                    self.missingValues[myIndex].append(myField)
-                # validate field value
-                elif(not self.validateField(myRow[myField], self.fieldFilters[myField])):
-                    if myIndex not in self.badValues.keys():
-                        self.badValues[myIndex] = list()
-                    self.badValues[myIndex].append((myField, myRow[myField]))
-                else:
-                    # add +1 to value counter
-                    if myField not in self.valueFrequency.keys():
-                        self.valueFrequency[myField] = FieldCounter(myRow[myField])
+        try:
+            for myIndex, myRow in self.dataFile.iterrows():
+                for myField in self.dataFile.columns:
+                    # check if field has a value
+                    if myRow[myField] == '':
+                        if myIndex not in self.missingValues.keys():
+                            self.missingValues[myIndex] = list()
+                        self.missingValues[myIndex].append(myField)
+                    # validate field value
+                    elif(not self.validateField(myRow[myField], self.fieldFilters[myField])):
+                        if myIndex not in self.badValues.keys():
+                            self.badValues[myIndex] = list()
+                        self.badValues[myIndex].append((myField, myRow[myField]))
                     else:
-                        self.valueFrequency[myField].incrementCounter(myRow[myField])
-        # print data summary to stdout
-        self.printResults()
+                        # add +1 to value counter
+                        if myField not in self.valueFrequency.keys():
+                            self.valueFrequency[myField] = FieldCounter(myRow[myField])
+                        else:
+                            self.valueFrequency[myField].incrementCounter(myRow[myField])
+            # print data summary to stdout
+            self.printResults()
+            return True
+
+        except:
+            return False
 
 def main():
 
